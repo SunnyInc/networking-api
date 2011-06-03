@@ -12,6 +12,6 @@ public class RSGameDecoder extends HandlerFactory.Handler {
     
     @Override
     public Object decode(Object[] params) {
-        return null;
+        return new Object();
     }
 }

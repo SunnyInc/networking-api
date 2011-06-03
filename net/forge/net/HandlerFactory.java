@@ -3,6 +3,7 @@ package net.forge.net;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelHandler;
 import org.jboss.netty.channel.ChannelHandlerContext;
+import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
@@ -29,7 +30,7 @@ public class HandlerFactory {
                        
             @Override
             public final void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-                Object[] params = { ctx, e };
+                Object[] params = { ctx, e };                
                 handler.receive(params);
             } 
             
@@ -57,7 +58,7 @@ public class HandlerFactory {
     /**
      * Generates an encoder which has only one purpose; to decode messages.
      * @param handler The handler to generate the channel handler with.
-     * @return 
+     * @return The generated encoder.
      */
     public static ChannelHandler generateEncoder(final Handler handler) {
         OneToOneEncoder decoder = new OneToOneEncoder() {
