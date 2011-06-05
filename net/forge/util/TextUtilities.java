@@ -56,6 +56,26 @@ public class TextUtilities {
     }
     
     /**
+     * 
+     * @param username The username to check.
+     * @return 
+     */
+    public static boolean validUsername(String username) {
+        username = username.toLowerCase();
+        for(String chk : INVALID_USRNAMES)
+            if(username.equals(chk))
+                return false;
+        return true;
+    }
+    
+    /**
+     * A list of invalid usernames.
+     */
+    private static final String[] INVALID_USRNAMES = {
+        "", " ", "admin"
+    };
+    
+    /**
      * The list of valid characters for the Long -> String/String -> Long
      */
     private static final char VALID_CHARS[] = {

@@ -11,6 +11,19 @@ import net.forge.io.StreamBuffer;
 public class RSInputStream extends StreamBuffer {
     
     /**
+     *
+     * @return
+     */
+    public String getString() {
+        String s = "";
+        byte b;
+        while((b = getByteBuffer().get()) != 10) {
+            s += (char) b;
+        }
+        return s;
+    }
+    
+    /**
      * 
      * @param bytes 
      */

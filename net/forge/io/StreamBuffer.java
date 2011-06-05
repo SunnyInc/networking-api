@@ -23,10 +23,11 @@ public class StreamBuffer {
      * Puts a byte into the buffer.
      * @param b The byte to put.
      */
-    public void put(byte b) {
+    public StreamBuffer put(byte b) {
         if(doExpand(1))
             expand(1);
         buffer.put(b);
+        return this;
     }
     
     /**
@@ -34,18 +35,20 @@ public class StreamBuffer {
      * @param b The byte to put.
      * @param pos The position to put the byte at.
      */
-    public void put(byte b, int pos) {
+    public StreamBuffer put(byte b, int pos) {
         buffer.put(pos, b);
+        return this;
     }
     
     /**
      * Puts a short into the buffer.
      * @param s The short to put.
      */
-    public void put(short s) {
+    public StreamBuffer put(short s) {
         if(doExpand(2))
             expand(2);
         buffer.putShort(s);
+        return this;
     }
     
     /**
@@ -53,18 +56,20 @@ public class StreamBuffer {
      * @param s The short to put.
      * @param pos The position to put the short at.
      */
-    public void put(short s, int pos) {
+    public StreamBuffer put(short s, int pos) {
         buffer.putShort(pos, s);
+        return this;
     }
     
     /**
      * Puts an integer into the buffer.
      * @param i  The integer to put.
      */
-    public void put(int i) {
+    public StreamBuffer put(int i) {
         if(doExpand(4))
             expand(4);
         buffer.putInt(i);
+        return this;
     }
     
     /**
@@ -72,18 +77,20 @@ public class StreamBuffer {
      * @param i The integer to put.
      * @param pos The position to put the integer at.
      */
-    public void put(int i, int pos) {
+    public StreamBuffer put(int i, int pos) {
         buffer.putInt(pos, i);
+        return this;
     }
     
     /**
      * Puts a long into the buffer.
      * @param l The long to put.
      */
-    public void put(long l) {
+    public StreamBuffer put(long l) {
         if(doExpand(8))
             expand(8);
         buffer.putLong(l);
+        return this;
     }
     
     /**
@@ -91,8 +98,9 @@ public class StreamBuffer {
      * @param l The long to put.
      * @param pos The position to put the long at.
      */
-    public void put(long l, int pos) {
+    public StreamBuffer put(long l, int pos) {
         buffer.putLong(pos, l);
+        return this;
     }
     
     /**
@@ -103,7 +111,7 @@ public class StreamBuffer {
      * @return If an expansion of the buffer is necessary. 
      */
     public boolean doExpand(int amt) {
-        return buffer.remaining() <= amt;
+        return buffer.remaining() <= amt;        
     }
     
     /**
@@ -113,6 +121,7 @@ public class StreamBuffer {
     public void expand(int amt) {
        int pos = buffer.position();
        ByteBuffer buf = ByteBuffer.allocate(buffer.capacity() + amt);
+       buffer.position(0);
        buf.put(buffer);
        buffer = ByteBuffer.wrap(buf.array());
        buffer.position(pos);

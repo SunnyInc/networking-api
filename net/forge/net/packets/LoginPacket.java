@@ -4,6 +4,7 @@ import net.forge.net.Passport;
 import net.forge.net.SimplePacket;
 import net.forge.net.exceptions.InvalidPacketException;
 import org.jboss.netty.channel.Channel;
+import org.jboss.netty.channel.ChannelPipeline;
 
 /**
  * RuneForge | 317
@@ -30,5 +31,18 @@ public abstract class LoginPacket extends SimplePacket {
      * @param channel The channel to write the reponse to.
      */
     public abstract void writeResponse(Passport passport, Channel channel);
+    
+    /**
+     * Updates the pipeline.
+     * @param pipline The channel pipeline to update.
+     */
+    public abstract void updatePipeline(ChannelPipeline pipeline);
+    
+    /**
+     * An error or something bad happened, cause a fall back.
+     * @param passport The players passport.
+     * @param channel  The channel to write any messages.
+     */
+    public abstract void fallBack(Passport passport, Channel channel);
       
 }

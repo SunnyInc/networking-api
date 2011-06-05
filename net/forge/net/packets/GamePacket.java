@@ -1,5 +1,6 @@
 package net.forge.net.packets;
 
+import net.forge.net.Passport;
 import net.forge.net.SimplePacket;
 
 /**
@@ -13,6 +14,6 @@ public abstract class GamePacket extends SimplePacket {
     /**
      * Executes the packet.
      */
-    abstract void execute();
+    public abstract void execute(Passport passport);
     
 }

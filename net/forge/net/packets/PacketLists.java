@@ -1,7 +1,7 @@
 package net.forge.net.packets;
 
-import net.forge.net.packets.login.Information;
-import net.forge.net.packets.login.Initial;
+import net.forge.net.packets.login.PlayerInformation;
+import net.forge.net.packets.login.Handshake;
 
 /**
  * RuneForge | 317
@@ -49,8 +49,8 @@ public class PacketLists {
      */
     static {
         /* Initialize Login Packets */
-        PACKETS[14] = Initial.class;
-        PACKETS[16] = Information.class;
+        PACKETS[14] = Handshake.class;
+        PACKETS[16] = PlayerInformation.class;
         /* Initialize Game Packets  */
     }
 }

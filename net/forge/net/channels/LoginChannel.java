@@ -26,13 +26,10 @@ public class LoginChannel extends HandlerFactory.Handler {
     }
         
     @Override
-    public void disconnected(Object[] params){
-        
-    }
+    public void disconnected(Object[] params){}
         
     @Override
-    public void receive(Object[] params){
-        System.out.println("Recieving");
+    public void receive(Object[] params) {
         Passport passport = (Passport) ((ChannelHandlerContext) params[0]).getAttachment();
         LoginPacket packet = (LoginPacket) ((MessageEvent) params[1]).getMessage();
         passport.setCurrentPacket(packet);

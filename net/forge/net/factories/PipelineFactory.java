@@ -4,6 +4,8 @@ import net.forge.net.factories.HandlerFactory;
 import net.forge.net.channels.GameChannel;
 import net.forge.net.channels.LoginChannel;
 import net.forge.net.channels.UpdateChannel;
+import net.forge.net.decoders.GamePacketDecoder;
+import net.forge.net.decoders.JagexStreamDecoder;
 import net.forge.net.decoders.LoginPacketDecoder;
 import net.forge.net.decoders.StreamDecoder;
 import net.forge.net.encoders.StreamEncoder;
@@ -39,9 +41,9 @@ public class PipelineFactory {
      *        already added channel handlers with the same name will be removed.
      */
     public static void switchHandlers(ChannelPipeline pipeline, HandlerSets set) {
+        while(pipeline.getLast() != null)
+            pipeline.removeLast();
         for(int pos = 0; pos < set.params.length; pos++) {
-            while(pipeline.getFirst() != null)
-                pipeline.removeFirst();
             pipeline.addLast((String) set.params[pos][0], (ChannelHandler) set.params[pos][1]);
         }
     }
@@ -55,7 +57,16 @@ public class PipelineFactory {
          * Pre-made Handler sets
          */
         GAME_HANDLER(new Object[] {
-            "handler",
+            "rs stream decoder",
+            HandlerFactory.generateDecoder(new JagexStreamDecoder()),           
+        }, new Object[] {
+            "game packet decoder",
+            HandlerFactory.generateDecoder(new GamePacketDecoder()),           
+        }, new Object[] {
+            "encoder",
+            HandlerFactory.generateEncoder(new StreamEncoder()),           
+        }, new Object[] {           
+            "handlerr",
             HandlerFactory.generateChannelHandler(new GameChannel())
         }),
         

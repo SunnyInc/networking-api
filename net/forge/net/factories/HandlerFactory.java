@@ -29,7 +29,7 @@ public class HandlerFactory {
                        
             @Override
             public final void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-                Object[] params = { ctx, e };                 
+                Object[] params = { ctx, e };  
                 handler.receive(params);
             } 
             
@@ -148,7 +148,7 @@ public class HandlerFactory {
          * @param params The error parameters.
          */
         protected void printError(Object[] params) {
-            System.err.println(((ExceptionEvent) params[1]).getCause());
+            ((ExceptionEvent) params[1]).getCause().printStackTrace();
         }
     }   
 }

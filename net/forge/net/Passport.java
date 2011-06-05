@@ -1,5 +1,7 @@
 package net.forge.net;
 
+import net.forge.content.entities.Drone;
+
 /**
  * RuneForge | 317
  * Passport.java
@@ -11,9 +13,14 @@ package net.forge.net;
 public class Passport {
     
     /**
-     * 
+     * The current packet being parsed.
      */
     SimplePacket packet = null;
+    
+    /**
+     * The passports player.
+     */
+    Drone player = null;
     
     /**
      * The username hash from the client.
@@ -74,10 +81,26 @@ public class Passport {
     }
     
     /**
-     * 
-     * @param packet 
+     * Sets the current packet.
+     * @param packet The packet being parsed.
      */
     public void setCurrentPacket(SimplePacket packet) {
         this.packet = packet;
+    }
+    
+    /**
+     * Sets the player.
+     * @param player The player to set.
+     */
+    public void setPlayer(Drone player) {
+        this.player = player;
+    }
+    
+    /**
+     * Gets the player.
+     * @return The passports player.
+     */
+    public Drone getPlayer() {
+        return player;
     }
 }
