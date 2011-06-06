@@ -8,6 +8,7 @@ import net.forge.net.Passport;
  * Player.java
  * @version 1.0.0
  * @author SiniSoul (SiniSoul@live.com)
+ * @author Somebodyy (david1kyle2@hotmail.com)
  */
 public class Player extends Drone implements Identifiable<String> {
     
